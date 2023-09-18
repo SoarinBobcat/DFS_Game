@@ -548,6 +548,7 @@ MonoBehaviour:
   - {fileID: 1389258055}
   - {fileID: 1622374381}
   - {fileID: 700098638}
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &268955035
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -758,6 +759,7 @@ MonoBehaviour:
   children:
   - {fileID: 1622374381}
   - {fileID: 1389258055}
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &355137588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -890,6 +892,7 @@ MonoBehaviour:
   children:
   - {fileID: 1853686109}
   - {fileID: 1504686828}
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &700098639
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1153,6 +1156,7 @@ MonoBehaviour:
   - {fileID: 1622374381}
   - {fileID: 1389258055}
   children: []
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &836551683
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1484,7 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492917e4cc685f04f97741c52883ef30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 20
 --- !u!135 &1059721680
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1555,7 +1559,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059721678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 39}
+  m_LocalPosition: {x: 0, y: 0.55, z: 39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1831,7 +1835,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220234472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 2.5}
+  m_LocalPosition: {x: 0, y: 0.55, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1953,6 +1957,7 @@ MonoBehaviour:
   - {fileID: 268955034}
   - {fileID: 355137587}
   - {fileID: 1573181747}
+  location: {x: 0, y: 0, z: 0}
 --- !u!1 &1389258052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,6 +2063,7 @@ MonoBehaviour:
   - {fileID: 1504686828}
   - {fileID: 836551682}
   - {fileID: 1853686109}
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &1389258056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2189,6 +2195,7 @@ MonoBehaviour:
   - {fileID: 1622374381}
   - {fileID: 700098638}
   children: []
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &1504686829
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2320,6 +2327,7 @@ MonoBehaviour:
   children:
   - {fileID: 700098638}
   - {fileID: 1389258055}
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &1573181748
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2507,6 +2515,7 @@ MonoBehaviour:
   children:
   - {fileID: 836551682}
   - {fileID: 1504686828}
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &1622374382
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3096,6 +3105,7 @@ MonoBehaviour:
   - {fileID: 700098638}
   - {fileID: 1389258055}
   children: []
+  location: {x: 0, y: 0, z: 0}
 --- !u!54 &1853686110
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3359,19 +3369,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1872208492}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1220234473}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: MoveByMouse
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1872208492
 MonoBehaviour:
   m_ObjectHideFlags: 0

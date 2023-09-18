@@ -40,8 +40,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(CurrentNode);
-
         if (moving == false)
         {
             if (schmovin == true)
@@ -69,13 +67,15 @@ public class Player : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, move, out hit, distance))
                 {
-                    Debug.Log(hit.collider.name);
+                    if (hit.collider.gameObject.GetComponent<Node>() != CurrentNode)
                     MoveToNode(hit.collider.gameObject.GetComponent<Node>());
                 }
             }
         }
         else
         {
+            currentDir = TargetNode.transform.position - transform.position;
+            currentDir = currentDir.normalized;
             if (Vector3.Distance(transform.position, TargetNode.transform.position) > 0.25f)
             {
                 transform.Translate(currentDir * speed * Time.deltaTime);
@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
             {
                 moving = false;
                 CurrentNode = TargetNode;
+                transform.position = CurrentNode.location;
             }
         }
     }
@@ -91,6 +92,7 @@ public class Player : MonoBehaviour
     //Implement mouse interaction method here
     public void MoveByMouse(int dir)
     {
+        Debug.Log("O_O");
         switch (dir)
         {
             case 0:
@@ -119,8 +121,6 @@ public class Player : MonoBehaviour
         if (moving == false)
         {
             TargetNode = node;
-            currentDir = TargetNode.transform.position - transform.position;
-            currentDir = currentDir.normalized;
             moving = true;
         }
     }
