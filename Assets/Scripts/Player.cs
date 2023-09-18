@@ -24,6 +24,18 @@ public class Player : MonoBehaviour
 
     bool schmovin = true;
 
+    public Color green = Color.green;
+    public Color red = Color.red;
+    public Color white = Color.white;
+
+    [SerializeField] GameObject upButt;
+    [SerializeField] GameObject downButt;
+    [SerializeField] GameObject leftButt;
+    [SerializeField] GameObject rightButt;
+
+    float[] timer = {0,0,0,0};
+    float time = 0.2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +52,32 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i=0; i < 4; i++)
+        {
+            if (timer[i] > 0)
+            {
+                timer[i] -= 1 * Time.deltaTime;
+            }
+            else
+            {
+                switch (i)
+                {
+                    case 0:
+                        upButt.GetComponent<Image>().color = white;
+                        break;
+                    case 1:
+                        rightButt.GetComponent<Image>().color = white;
+                        break;
+                    case 2:
+                        downButt.GetComponent<Image>().color = white;
+                        break;
+                    case 3:
+                        leftButt.GetComponent<Image>().color = white;
+                        break;
+                }
+            }
+        }
+
         if (moving == false)
         {
             if (schmovin == true)
@@ -57,7 +95,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                schmovin = false;
+                schmovin = true;
             }
 
             if ((move != Vector3.zero) && (!moving))
@@ -69,6 +107,58 @@ public class Player : MonoBehaviour
                 {
                     if (hit.collider.gameObject.GetComponent<Node>() != CurrentNode)
                     MoveToNode(hit.collider.gameObject.GetComponent<Node>());
+
+                    switch (move.x)
+                    {
+                        case -1:
+                            leftButt.GetComponent<Image>().color = green;
+                            timer[3] = time;
+                            break;
+                        case 1:
+                            rightButt.GetComponent<Image>().color = green;
+                            timer[1] = time;
+                            break;
+                        case 0:
+                            switch (move.z)
+                            {
+                                case -1:
+                                    downButt.GetComponent<Image>().color = green;
+                                    timer[2] = time;
+                                    break;
+                                case 1:
+                                    upButt.GetComponent<Image>().color = green;
+                                    timer[0] = time;
+                                    break;
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (move.x)
+                    {
+                        case -1:
+                            leftButt.GetComponent<Image>().color = red;
+                            timer[3] = time;
+                            break;
+                        case 1:
+                            rightButt.GetComponent<Image>().color = red;
+                            timer[1] = time;
+                            break;
+                        case 0:
+                            switch (move.z)
+                            {
+                                case -1:
+                                    downButt.GetComponent<Image>().color = red;
+                                    timer[2] = time;
+                                    break;
+                                case 1:
+                                    upButt.GetComponent<Image>().color = red;
+                                    timer[0] = time;
+                                    break;
+                            }
+                            break;
+                    }
                 }
             }
         }
@@ -92,7 +182,6 @@ public class Player : MonoBehaviour
     //Implement mouse interaction method here
     public void MoveByMouse(int dir)
     {
-        Debug.Log("O_O");
         switch (dir)
         {
             case 0:

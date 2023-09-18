@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
                 //Update currNode to the top of the stack
                 if (stack.Count != 0)
                 {
-                    currNode = stack[0];
+                    currNode = stack[stack.Count-1];
                 }
                 else
                 {
