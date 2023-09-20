@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Debug.Log(hMove);
 
@@ -236,7 +236,7 @@ public class Player : MonoBehaviour
         {
             currentDir = TargetNode.transform.position - transform.position;
             currentDir = currentDir.normalized;
-            if (Vector3.Distance(transform.position, TargetNode.transform.position) > 0.25f)
+            if (Vector3.Distance(transform.position, TargetNode.transform.position) > speed * Time.deltaTime)
             {
                 transform.Translate(currentDir * speed * Time.deltaTime);
             }
