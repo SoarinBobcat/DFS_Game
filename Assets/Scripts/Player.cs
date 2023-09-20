@@ -14,15 +14,16 @@ public class Player : MonoBehaviour
     private bool moving = false;
     private Vector3 currentDir;
 
-    int up;
-    int down;
-    int left;
-    int right;
-    int hMove;
-    int vMove;
+    float up;
+    float down;
+    float left;
+    float right;
+    float hMove;
+    float vMove;
     Vector3 move;
 
     bool schmovin = true;
+    bool moved = false;
 
     public Color green = Color.green;
     public Color red = Color.red;
@@ -52,6 +53,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(hMove);
+
+        TargetNode = TargetNode == null ? CurrentNode : TargetNode;
+
         for (int i=0; i < 4; i++)
         {
             if (timer[i] > 0)
@@ -80,16 +85,32 @@ public class Player : MonoBehaviour
 
         if (moving == false)
         {
+            if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+            {
+                moved = false;
+            }
+
             if (schmovin == true)
             {
                 //Implement inputs and event-callbacks here
-                up = Input.GetKeyDown(KeyCode.UpArrow) ? 1 : 0;
-                down = Input.GetKeyDown(KeyCode.DownArrow) ? -1 : 0;
-                left = Input.GetKeyDown(KeyCode.LeftArrow) ? -1 : 0;
-                right = Input.GetKeyDown(KeyCode.RightArrow) ? 1 : 0;
+                /*up = Input.GetButtonDown("Up") ? 1 : 0;
+                down = Input.GetButtonDown("Down") ? -1 : 0;
+                left = Input.GetButtonDown("Left") ? -1 : 0;
+                right = Input.GetButtonDown("Right") ? 1 : 0;
 
                 hMove = left + right;
-                vMove = up + down;
+                vMove = up + down;*/
+
+                if (moved == false)
+                {
+                    hMove = Input.GetAxisRaw("Horizontal");
+                    vMove = Input.GetAxisRaw("Vertical");
+                }
+                else
+                {
+                    hMove = 0;
+                    vMove = 0;
+                }
 
                 move = new Vector3(hMove, 0, vMove);
             }
@@ -105,10 +126,10 @@ public class Player : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, move, out hit, distance))
                 {
-                    if (hit.collider.gameObject.GetComponent<Node>() != CurrentNode)
+                    //if (hit.collider.gameObject.GetComponent<Node>() != CurrentNode)
                     MoveToNode(hit.collider.gameObject.GetComponent<Node>());
 
-                    switch (move.x)
+                    /*switch (Mathf.Sign(move.x))
                     {
                         case -1:
                             leftButt.GetComponent<Image>().color = green;
@@ -119,7 +140,7 @@ public class Player : MonoBehaviour
                             timer[1] = time;
                             break;
                         case 0:
-                            switch (move.z)
+                            switch (Mathf.Sign(move.z))
                             {
                                 case -1:
                                     downButt.GetComponent<Image>().color = green;
@@ -131,11 +152,36 @@ public class Player : MonoBehaviour
                                     break;
                             }
                             break;
+                    }*/
+                    if (move.x > 0)
+                    {
+                        rightButt.GetComponent<Image>().color = green;
+                        timer[1] = time;
                     }
+                    else if (move.x < 0)
+                    {
+                        leftButt.GetComponent<Image>().color = green;
+                        timer[3] = time;
+                    }
+                    else
+                    {
+                        if (move.z > 0)
+                        {
+                            upButt.GetComponent<Image>().color = green;
+                            timer[0] = time;
+                        }
+                        else if (move.z < 0)
+                        {
+                            downButt.GetComponent<Image>().color = green;
+                            timer[2] = time;
+                        }
+                    }
+
+                    moved = true;
                 }
                 else
                 {
-                    switch (move.x)
+                    /*switch (Mathf.Sign(move.x))
                     {
                         case -1:
                             leftButt.GetComponent<Image>().color = red;
@@ -146,7 +192,7 @@ public class Player : MonoBehaviour
                             timer[1] = time;
                             break;
                         case 0:
-                            switch (move.z)
+                            switch (Mathf.Sign(move.z))
                             {
                                 case -1:
                                     downButt.GetComponent<Image>().color = red;
@@ -158,6 +204,30 @@ public class Player : MonoBehaviour
                                     break;
                             }
                             break;
+                    }*/
+
+                    if (move.x > 0)
+                    {
+                        rightButt.GetComponent<Image>().color = red;
+                        timer[1] = time;
+                    }
+                    else if (move.x < 0)
+                    {
+                        leftButt.GetComponent<Image>().color = red;
+                        timer[3] = time;
+                    }
+                    else
+                    {
+                        if (move.z > 0)
+                        {
+                            upButt.GetComponent<Image>().color = red;
+                            timer[0] = time;
+                        }
+                        else if (move.z < 0)
+                        {
+                            downButt.GetComponent<Image>().color = red;
+                            timer[2] = time;
+                        }
                     }
                 }
             }

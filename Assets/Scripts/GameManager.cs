@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    public Text Score;
+    public float points;
+
+    public GameObject enemy;
+
     /// <summary>
     /// Awake is called before Start is executed for the first time.
     /// </summary>
@@ -25,6 +31,12 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
         FindObjectOfType<Enemy>().GameOverEvent += GameOver;
+    }
+
+    private void Update()
+    {
+        points = Mathf.Floor(enemy.GetComponent<Enemy>().Speed)-20;
+        Score.text = "Score: " + points;
     }
 
     /// <summary>
@@ -41,6 +53,7 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     IEnumerator RestartGame()
     {
+
         player.enabled = false;
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [Tooltip("Movement speed modifier.")]
     [SerializeField] private float speed = 3;
+    public float Speed { get { return speed; } }
     private Node targetNode;
     private Vector3 currentDir;
     private Vector3 targetDir;
