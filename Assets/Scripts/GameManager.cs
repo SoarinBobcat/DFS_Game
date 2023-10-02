@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
     {
         points = Mathf.Floor(enemy.GetComponent<Enemy>().Speed)-20;
         Score.text = "Score: " + points;
+
+	if (Input.GetKey("escape")){
+		Application.Quit();
+	}
     }
 
     /// <summary>
